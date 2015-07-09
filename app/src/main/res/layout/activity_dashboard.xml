@@ -12,43 +12,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="@drawable/rounded_border_white"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create a new appointment"
-            android:textSize="20dp"
+            android:layout_margin="@dimen/activity_default_margin"
+            android:text="@string/createAppointment"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16dp"
             />
         <Spinner
             android:id="@+id/dashboardChildPickerSpinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_default_margin"
+            android:background="@drawable/primary_dropdown"
+            >
         </Spinner>
         <Spinner
             android:id="@+id/dashboardSpecialtyPickerSpinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_default_margin"
+            android:background="@drawable/primary_dropdown">
         </Spinner>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#454545"
+            android:layout_margin="@dimen/activity_default_margin"
+            android:background="@drawable/primary_button"
             android:text="Search Physicians"
+            android:textColor="@color/white"
             android:onClick="searchPhysiciansBtnClicked"
             />
     </LinearLayout>
     <ListView
         android:id="@+id/dashboardAppointmentList"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/activity_default_margin"
+        android:layout_marginBottom="@dimen/activity_default_margin"
+        android:background="@drawable/rounded_border_white"
         />
     <ListView
         android:id="@+id/dashboardNotesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="@dimen/activity_default_margin"
+        android:layout_marginBottom="@dimen/activity_default_margin"
+        android:background="@drawable/rounded_border_white"
         />
 </LinearLayout>

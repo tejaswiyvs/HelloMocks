@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="createAppointment">Create a new appointment</string>
+    <string name="upcomingAppointments">Upcoming appointments</string>
+    <string name="history">History</string>
+    <string name="summaries">Summaries</string>
+    <string name="all">All</string>
+    <string name="readConsultSummary">Read consult summary</string>
+    <string name="searchPhysicians">Search Physicians</string>
+</resources>

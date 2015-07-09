@@ -9,24 +9,29 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.tejaswi_yerukalapudi.hellomocks.CustomApplication;
 import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
+import com.tejaswi_yerukalapudi.hellomocks.models.Session;
+import com.tejaswi_yerukalapudi.hellomocks.models.User;
 
 
-public class DashboardActivity extends ActionBarActivity {
+public class DashboardActivity extends BaseActivity {
 
     private ListView mUpcomingAppointmentsListView;
     private ListView mNotesListView;
     private Spinner mChildPickerSpinner;
     private Spinner mSpecialtyPickerSpinner;
     private ArrayAdapter<Appointment> mUpcomingAppointmentsAdapter;
+    private User mCurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         this.bindUi();
+        this.mCurrentUser = this.mSession.getCurrentUser();
     }
 
     @Override

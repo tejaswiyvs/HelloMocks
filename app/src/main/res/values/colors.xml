@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="primary_accent" type="color">#FC9227</item>
+    <item name="primary_background" type="color">#EEEEEE</item>
+    <item name="primary_drop_shadow" type="color">#DADADA</item>
+    <item name="primary_text_color" type="color">#847872</item>
+    <item name="stroke" type="color">#EEEEEE</item>
+    <item name="secondary_accent" type="color">#42B47C</item>
+    <item name="secondary_background" type="color">#EBF7F1</item>
+    <item name="secondary_drop_shadow" type="color">#77C49B</item>
+    <item name="tertiary_accent" type="color">#3D8DBC</item>
+    <item name="white" type="color">#FFFFFF</item>
+</resources>
