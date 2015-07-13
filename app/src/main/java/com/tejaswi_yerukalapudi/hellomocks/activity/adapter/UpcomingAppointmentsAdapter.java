@@ -22,7 +22,7 @@ import java.util.List;
 public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
 
     public UpcomingAppointmentsAdapter(Context ctx, List<Appointment> appointmentList) {
-        super(ctx, android.R.layout.simple_list_item_1, appointmentList);
+        super(ctx, R.layout.view_appointment_row, appointmentList);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
 
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            view = inflater.inflate(R.layout.view_appointment_row, null);
+            view = inflater.inflate(R.layout.view_appointment_row, parent, false);
         }
 
         final Appointment appointment = getItem(pos);
