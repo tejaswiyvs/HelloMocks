@@ -73,12 +73,12 @@ public class Appointment implements Parcelable {
 
     public String getSimpleAppointmentTime() {
         if (this.appointmentDate == null) { return NULL_STRING; }
-        return Helper.getSimpleDateTime(this.appointmentDate);
+        return Helper.getSimpleDate(this.appointmentDate);
     }
 
     public String getAppointmentTimeDescription() {
         if (this.appointmentDate == null) { return NULL_STRING; }
-        return Helper.getSimpleDateDescriptor(appointmentDate);
+        return Helper.getSimpleDateDescription(appointmentDate);
     }
 
     public String getPhysicianInfo() {

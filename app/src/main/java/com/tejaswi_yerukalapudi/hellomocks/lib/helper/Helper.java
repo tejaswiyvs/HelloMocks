@@ -62,7 +62,7 @@ public class Helper {
         return result.toString();
     }
 
-    public static String getSimpleDateTime(Date date) {
+    public static String getSimpleDate(Date date) {
         if (date == null) { return ""; }
 
         if (Helper.isNow(date)) {
@@ -81,7 +81,7 @@ public class Helper {
         }
     }
 
-    public static String getSimpleDateDescriptor(Date date) {
+    public static String getSimpleDateDescription(Date date) {
         if (date == null) { return ""; }
         DateTime jodaDate = new DateTime(date);
         DateTimeFormatter formatter;
