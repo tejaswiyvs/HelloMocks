@@ -18,10 +18,10 @@ import java.util.List;
 /**
  * Created by Teja on 7/10/15.
  */
-public class ChildPickerAdapter extends ArrayAdapter<Person> {
+public class SpecialtyAdapter extends ArrayAdapter<CharSequence> {
 
-    public ChildPickerAdapter(Context context, List<Person> personList) {
-        super(context, R.layout.view_spinner_person, personList);
+    public SpecialtyAdapter(Context context, List<CharSequence> specialties) {
+        super(context, R.layout.view_spinner_specialty, specialties);
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -34,13 +34,11 @@ public class ChildPickerAdapter extends ArrayAdapter<Person> {
 
     public View getViewHelper(int position, View convertView, ViewGroup parent, boolean dropDown) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View row = inflater.inflate(R.layout.view_spinner_person, parent, false);
-        Person p = getItem(position);
-        TextView name = (TextView) row.findViewById(R.id.personSpinnerNameTxt);
-        ImageView profilePictureImg = (ImageView) row.findViewById(R.id.personSpinnerProfilePictureImg);
-        ImageView dropDownImg = (ImageView) row.findViewById(R.id.personSpinnerDropDownImgButton);
-        name.setText(p.getFullName());
-        profilePictureImg.setImageResource(p.getPicture());
+        View row = inflater.inflate(R.layout.view_spinner_specialty, parent, false);
+        String specialty = getItem(position).toString();
+        TextView name = (TextView) row.findViewById(R.id.specialtySpinnerNameTxt);
+        ImageView dropDownImg = (ImageView) row.findViewById(R.id.specialtySpinnerDropdownBtn);
+        name.setText(specialty);
         if (dropDown) {
             dropDownImg.setVisibility(View.GONE);
         }

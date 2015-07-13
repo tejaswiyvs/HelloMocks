@@ -3,6 +3,7 @@ package com.tejaswi_yerukalapudi.hellomocks.core;
 import android.app.Application;
 import android.content.Context;
 
+import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
 import com.tejaswi_yerukalapudi.hellomocks.models.Person;
 import com.tejaswi_yerukalapudi.hellomocks.models.Physician;
@@ -48,18 +49,21 @@ public class CustomApplication extends Application {
         child1.setFirstName("Fname1");
         child1.setLastName("Lname1");
         child1.setDateOfBirth(new Date(315532800));
+        child1.setPicture(R.drawable.avatar_blue);
 
         Person child2 = new Person();
         child2.setPersonId(UUID.randomUUID().toString());
         child2.setFirstName("Fname2");
         child2.setLastName("Lname2");
         child2.setDateOfBirth(new Date(315532800));
+        child2.setPicture(R.drawable.avatar_red);
 
         Person child3 = new Person();
         child3.setPersonId(UUID.randomUUID().toString());
         child3.setFirstName("Fname3");
         child3.setLastName("Lname3");
         child3.setDateOfBirth(new Date(315532800));
+        child3.setPicture(R.drawable.avatar_yellow);
 
         List<Person> children = new ArrayList<Person>();
         children.add(child1);

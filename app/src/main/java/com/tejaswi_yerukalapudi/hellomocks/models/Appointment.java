@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by teja on 7/9/15.
  */
-public class Appointment implements Parcelable {
+public class Appointment implements Parcelable, Comparable<Appointment> {
     private static String NULL_STRING = "N/A";
 
     private String appointmentId;
@@ -88,6 +88,14 @@ public class Appointment implements Parcelable {
         String physicianName = this.physician.getFullName();
         String specialty = this.physician.getSpecialty();
         return physicianName + " - " + specialty;
+    }
+
+    // Comparable
+    @Override
+    public int compareTo(Appointment another) {
+        if (this.appointmentDate == null) return -1;
+        else if (another.appointmentDate == null) return 1;
+        return this.appointmentDate.compareTo(another.appointmentDate);
     }
 
     // Parcelable

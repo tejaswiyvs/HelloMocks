@@ -12,12 +12,17 @@ import android.widget.Spinner;
 
 import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.ChildPickerAdapter;
+import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.SpecialtyAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.UpcomingAppointmentsAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
 import com.tejaswi_yerukalapudi.hellomocks.models.Person;
 import com.tejaswi_yerukalapudi.hellomocks.models.User;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -83,14 +88,18 @@ public class DashboardActivity extends BaseActivity {
 
     private void setupSpecialtySpinner() {
         this.mSpecialtyPickerSpinner = (Spinner) findViewById(R.id.dashboardSpecialtyPickerSpinner);
-        this.mSpecialtyPickerAdapter = ArrayAdapter.createFromResource(this, R.array.specialties, android.R.layout.simple_spinner_item);
+        String[] specialties = getResources().getStringArray(R.array.specialties);
+        this.mSpecialtyPickerAdapter = new SpecialtyAdapter(this, new ArrayList<CharSequence>(Arrays.asList(specialties)));
         this.mSpecialtyPickerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.mSpecialtyPickerSpinner.setAdapter(this.mSpecialtyPickerAdapter);
     }
 
     private void setupUpcomingAppointmentsList() {
         this.mUpcomingAppointmentsListView = (ListView) findViewById(R.id.dashboardAppointmentList);
-        this.mUpcomingAppointmentsAdapter = new UpcomingAppointmentsAdapter(this, this.mCurrentUser.getUpcomingAppointments());
-        this.mUpcomingAppointmentsListView.setAdapter(this.mUpcomingAppointmentsAdapter);
+        if (this.mCurrentUser.getUpcomingAppointments() != null) {
+            Collections.sort(this.mCurrentUser.getUpcomingAppointments());
+            this.mUpcomingAppointmentsAdapter = new UpcomingAppointmentsAdapter(this, this.mCurrentUser.getUpcomingAppointments());
+            this.mUpcomingAppointmentsListView.setAdapter(this.mUpcomingAppointmentsAdapter);
+        }
     }
 }
