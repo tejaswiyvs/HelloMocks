@@ -12,7 +12,9 @@
         android:layout_weight="7"
         android:padding="10dp"
         >
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/appointmentCellTimeLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +23,9 @@
             android:textStyle="bold"
             android:textSize="20dp"
             />
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/appointmentCellTimeDescriptionLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +36,9 @@
             android:textColor="@color/primary_text_color"
             android:textSize="12dp"
             />
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/appointmentCellPhysicianInfoLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +59,9 @@
             android:src="@drawable/avatar_yellow"
             />
 
-        <TextView
+        <com.devspark.robototextview.widget.RobotoTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/appointmentCellPersonNameLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

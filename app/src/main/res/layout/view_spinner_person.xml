@@ -13,7 +13,9 @@
         android:src="@drawable/avatar_yellow"
         />
 
-    <TextView
+    <com.devspark.robototextview.widget.RobotoTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/personSpinnerNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +24,8 @@
         android:layout_centerVertical="true"
         android:text="Melanie"
         android:textSize="15dp"
+        android:textColor="@color/primary_text_color"
+        app:typeface="roboto_medium"
         />
 
     <ImageView

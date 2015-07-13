@@ -5,7 +5,9 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_vertical"
     android:orientation="horizontal"
     android:gravity="center_vertical">
-    <TextView
+    <com.devspark.robototextview.widget.RobotoTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/spinnerTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
