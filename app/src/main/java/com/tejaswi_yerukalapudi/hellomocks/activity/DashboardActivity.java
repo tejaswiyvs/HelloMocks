@@ -1,20 +1,23 @@
 package com.tejaswi_yerukalapudi.hellomocks.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.tejaswi_yerukalapudi.hellomocks.CustomApplication;
 import com.tejaswi_yerukalapudi.hellomocks.R;
+import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.ChildPickerAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
-import com.tejaswi_yerukalapudi.hellomocks.models.Session;
+import com.tejaswi_yerukalapudi.hellomocks.models.Person;
 import com.tejaswi_yerukalapudi.hellomocks.models.User;
+
+import java.util.List;
 
 
 public class DashboardActivity extends BaseActivity {
@@ -23,7 +26,12 @@ public class DashboardActivity extends BaseActivity {
     private ListView mNotesListView;
     private Spinner mChildPickerSpinner;
     private Spinner mSpecialtyPickerSpinner;
+    private Button mSearchBtn;
+
+    private ArrayAdapter<Person> mChildPickerAdapter;
+    private ArrayAdapter<CharSequence> mSpecialtyPickerAdapter;
     private ArrayAdapter<Appointment> mUpcomingAppointmentsAdapter;
+
     private User mCurrentUser;
 
     @Override
@@ -36,7 +44,6 @@ public class DashboardActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_dashboard, menu);
         return true;
     }
@@ -56,9 +63,27 @@ public class DashboardActivity extends BaseActivity {
 
     // Helpers
     private void bindUi() {
-        this.mChildPickerSpinner = (Spinner) findViewById(R.id.dashboardChildPickerSpinner);
-        this.mSpecialtyPickerSpinner = (Spinner) findViewById(R.id.dashboardSpecialtyPickerSpinner);
+        this.setupChildPickerSpinner();
+        this.setupSpecialtySpinner();
         this.mUpcomingAppointmentsListView = (ListView) findViewById(R.id.dashboardAppointmentList);
         this.mNotesListView = (ListView) findViewById(R.id.dashboardNotesList);
+        this.mSearchBtn = (Button) findViewById(R.id.dashboardSearchBtn);
+    }
+
+    private void setupChildPickerSpinner() {
+        this.mChildPickerSpinner = (Spinner) findViewById(R.id.dashboardChildPickerSpinner);
+        List<Person> children = this.mSession.getCurrentUser().getChildren();
+        if (children == null || children.size() == 0) {
+            return;
+        }
+        this.mChildPickerAdapter = new ChildPickerAdapter(this, children);
+        this.mChildPickerSpinner.setAdapter(this.mChildPickerAdapter);
+    }
+
+    private void setupSpecialtySpinner() {
+        this.mSpecialtyPickerSpinner = (Spinner) findViewById(R.id.dashboardSpecialtyPickerSpinner);
+        this.mSpecialtyPickerAdapter = ArrayAdapter.createFromResource(this, R.array.specialties, android.R.layout.simple_spinner_item);
+        this.mSpecialtyPickerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.mSpecialtyPickerSpinner.setAdapter(this.mSpecialtyPickerAdapter);
     }
 }

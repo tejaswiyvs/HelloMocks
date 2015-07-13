@@ -1,4 +1,4 @@
-package com.tejaswi_yerukalapudi.hellomocks;
+package com.tejaswi_yerukalapudi.hellomocks.core;
 
 import android.app.Application;
 

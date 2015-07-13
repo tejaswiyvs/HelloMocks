@@ -1,15 +1,16 @@
 package com.tejaswi_yerukalapudi.hellomocks.activity;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.tejaswi_yerukalapudi.hellomocks.CustomApplication;
+import com.tejaswi_yerukalapudi.hellomocks.core.CustomApplication;
 import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.models.Session;
 
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends Activity {
 
     protected Session mSession;
 

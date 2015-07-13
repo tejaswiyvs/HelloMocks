@@ -8,11 +8,13 @@ import java.util.Date;
 /**
  * Created by teja on 7/9/15.
  */
+
 public class Person implements Parcelable {
     private String personId;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
+    private int pictureResourceId;
 
     public Person() {
 
@@ -23,6 +25,7 @@ public class Person implements Parcelable {
         this.firstName = in.readString();
         this.lastName = in.readString();
         this.dateOfBirth = new Date(in.readLong());
+        this.pictureResourceId = in.readInt();
     }
 
     public String getPersonId() {
@@ -57,6 +60,23 @@ public class Person implements Parcelable {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getFullName() {
+        StringBuffer result = new StringBuffer();
+        boolean flag = false;
+        if (this.lastName != null && !this.lastName.isEmpty()) {
+            result.append(this.lastName);
+            flag = true;
+        }
+        if (this.firstName != null && !this.firstName.isEmpty()) {
+            if (flag) {
+                result.append(", ");
+            }
+            result.append(this.firstName);
+        }
+
+        return result.toString();
+    }
+
     // Parcelable
     @Override
     public int describeContents() {
@@ -69,6 +89,7 @@ public class Person implements Parcelable {
         dest.writeString(this.firstName);
         dest.writeString(this.lastName);
         dest.writeLong(this.dateOfBirth.getTime());
+        dest.writeInt(this.pictureResourceId);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

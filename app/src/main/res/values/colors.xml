@@ -8,6 +8,8 @@
     <item name="secondary_accent" type="color">#42B47C</item>
     <item name="secondary_background" type="color">#EBF7F1</item>
     <item name="secondary_drop_shadow" type="color">#77C49B</item>
+    <item name="secondary_text_title" type="color">#47B681</item>
+    <item name="secondary_text_subtitle" type="color">#00A866</item>
     <item name="tertiary_accent" type="color">#3D8DBC</item>
     <item name="white" type="color">#FFFFFF</item>
 </resources>

@@ -7,4 +7,11 @@
     <string name="all">All</string>
     <string name="readConsultSummary">Read consult summary</string>
     <string name="searchPhysicians">Search Physicians</string>
+
+    <string-array name="specialties">
+        <item>Dermatology</item>
+        <item>Pediatrician</item>
+        <item>Cardiology</item>
+        <item>Neurology</item>
+    </string-array>
 </resources>

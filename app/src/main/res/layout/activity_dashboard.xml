@@ -24,20 +24,21 @@
             />
         <Spinner
             android:id="@+id/dashboardChildPickerSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_margin="@dimen/activity_default_margin"
-            android:background="@drawable/primary_dropdown"
+            android:background="@drawable/spinner_background"
             >
         </Spinner>
         <Spinner
             android:id="@+id/dashboardSpecialtyPickerSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_margin="@dimen/activity_default_margin"
-            android:background="@drawable/primary_dropdown">
+            android:background="@drawable/spinner_background">
         </Spinner>
         <Button
+            android:id="@+id/dashboardSearchBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_default_margin"
