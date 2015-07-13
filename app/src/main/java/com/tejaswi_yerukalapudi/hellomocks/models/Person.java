@@ -3,6 +3,8 @@ package com.tejaswi_yerukalapudi.hellomocks.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
+
 import java.util.Date;
 
 /**
@@ -61,20 +63,15 @@ public class Person implements Parcelable {
     }
 
     public String getFullName() {
-        StringBuffer result = new StringBuffer();
-        boolean flag = false;
-        if (this.lastName != null && !this.lastName.isEmpty()) {
-            result.append(this.lastName);
-            flag = true;
-        }
-        if (this.firstName != null && !this.firstName.isEmpty()) {
-            if (flag) {
-                result.append(", ");
-            }
-            result.append(this.firstName);
-        }
+        return Helper.getFullName(this.firstName, this.lastName);
+    }
 
-        return result.toString();
+    public int getPicture() {
+        return this.pictureResourceId;
+    }
+
+    public void setPicture(int pictureId) {
+        this.pictureResourceId = pictureId;
     }
 
     // Parcelable

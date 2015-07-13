@@ -3,14 +3,18 @@ package com.tejaswi_yerukalapudi.hellomocks.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
+
 import java.util.Date;
 
 /**
  * Created by teja on 7/9/15.
  */
 public class Appointment implements Parcelable {
+    private static String NULL_STRING = "N/A";
+
     private String appointmentId;
-    private Date appointmentDateTime;
+    private Date appointmentDate;
     private String reasonForVisit;
     private Physician physician;
     private Person person;
@@ -21,7 +25,7 @@ public class Appointment implements Parcelable {
 
     public Appointment(Parcel in) {
         this.appointmentId = in.readString();
-        this.appointmentDateTime = new Date(this.appointmentDateTime.getTime());
+        this.appointmentDate = new Date(this.appointmentDate.getTime());
         this.reasonForVisit = in.readString();
         this.physician = in.readParcelable(Physician.class.getClassLoader());
         this.person = in.readParcelable(Person.class.getClassLoader());
@@ -35,12 +39,12 @@ public class Appointment implements Parcelable {
         this.appointmentId = appointmentId;
     }
 
-    public Date getAppointmentDateTime() {
-        return appointmentDateTime;
+    public Date getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setAppointmentDateTime(Date appointmentDateTime) {
-        this.appointmentDateTime = appointmentDateTime;
+    public void setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 
     public String getReasonForVisit() {
@@ -67,6 +71,25 @@ public class Appointment implements Parcelable {
         this.person = person;
     }
 
+    public String getSimpleAppointmentTime() {
+        if (this.appointmentDate == null) { return NULL_STRING; }
+        return Helper.getSimpleDateTime(this.appointmentDate);
+    }
+
+    public String getAppointmentTimeDescription() {
+        if (this.appointmentDate == null) { return NULL_STRING; }
+        return Helper.getSimpleDateDescriptor(appointmentDate);
+    }
+
+    public String getPhysicianInfo() {
+        if (this.physician == null) {
+            return NULL_STRING;
+        }
+        String physicianName = this.physician.getFullName();
+        String specialty = this.physician.getSpecialty();
+        return physicianName + " - " + specialty;
+    }
+
     // Parcelable
     @Override
     public int describeContents() {
@@ -76,7 +99,7 @@ public class Appointment implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.appointmentId);
-        dest.writeLong(this.appointmentDateTime.getTime());
+        dest.writeLong(this.appointmentDate.getTime());
         dest.writeString(this.reasonForVisit);
         dest.writeParcelable(this.physician, flags);
         dest.writeParcelable(this.person, flags);

@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.ChildPickerAdapter;
+import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.UpcomingAppointmentsAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
 import com.tejaswi_yerukalapudi.hellomocks.models.Person;
@@ -65,7 +66,7 @@ public class DashboardActivity extends BaseActivity {
     private void bindUi() {
         this.setupChildPickerSpinner();
         this.setupSpecialtySpinner();
-        this.mUpcomingAppointmentsListView = (ListView) findViewById(R.id.dashboardAppointmentList);
+        this.setupUpcomingAppointmentsList();
         this.mNotesListView = (ListView) findViewById(R.id.dashboardNotesList);
         this.mSearchBtn = (Button) findViewById(R.id.dashboardSearchBtn);
     }
@@ -85,5 +86,11 @@ public class DashboardActivity extends BaseActivity {
         this.mSpecialtyPickerAdapter = ArrayAdapter.createFromResource(this, R.array.specialties, android.R.layout.simple_spinner_item);
         this.mSpecialtyPickerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.mSpecialtyPickerSpinner.setAdapter(this.mSpecialtyPickerAdapter);
+    }
+
+    private void setupUpcomingAppointmentsList() {
+        this.mUpcomingAppointmentsListView = (ListView) findViewById(R.id.dashboardAppointmentList);
+        this.mUpcomingAppointmentsAdapter = new UpcomingAppointmentsAdapter(this, this.mCurrentUser.getUpcomingAppointments());
+        this.mUpcomingAppointmentsListView.setAdapter(this.mUpcomingAppointmentsAdapter);
     }
 }

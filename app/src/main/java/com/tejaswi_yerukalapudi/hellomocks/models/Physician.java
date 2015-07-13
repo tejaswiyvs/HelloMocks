@@ -3,10 +3,15 @@ package com.tejaswi_yerukalapudi.hellomocks.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
+
 /**
  * Created by teja on 7/9/15.
  */
 public class Physician implements Parcelable {
+
+    private static final String DEFAULT_PHYSICIAN_NAME = "N/A";
+
     private String physicianId;
     private String firstName;
     private String lastName;
@@ -15,6 +20,12 @@ public class Physician implements Parcelable {
 
     public Physician() {
 
+    }
+
+    public Physician(String firstName, String lastName, String specialty) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialty = specialty;
     }
 
     public Physician(Parcel in) {
@@ -63,6 +74,11 @@ public class Physician implements Parcelable {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    public String getFullName() {
+        String fullName = Helper.getFullName(this.firstName, this.lastName);
+        return (!fullName.isEmpty()) ? "Dr. " + Helper.getFullName(this.firstName, this.lastName) : DEFAULT_PHYSICIAN_NAME;
     }
 
     // Parcelable

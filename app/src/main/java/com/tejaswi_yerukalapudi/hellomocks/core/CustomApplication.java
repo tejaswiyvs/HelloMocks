@@ -1,10 +1,15 @@
 package com.tejaswi_yerukalapudi.hellomocks.core;
 
 import android.app.Application;
+import android.content.Context;
 
+import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
 import com.tejaswi_yerukalapudi.hellomocks.models.Person;
+import com.tejaswi_yerukalapudi.hellomocks.models.Physician;
 import com.tejaswi_yerukalapudi.hellomocks.models.Session;
 import com.tejaswi_yerukalapudi.hellomocks.models.User;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +21,7 @@ import java.util.UUID;
  */
 public class CustomApplication extends Application {
     private Session mCurrentSession;
+    private static Context sContext;
 
     @Override
     public void onCreate() {
@@ -24,8 +30,10 @@ public class CustomApplication extends Application {
         // Hard coding user here. In the real app, this needs to be setup by the LoginActivity
         // with the right session.
         this.setupHardcodedSession();
+        sContext = this;
     }
 
+    // ugly stuff - necessary till API Integration
     private void setupHardcodedSession() {
         this.mCurrentSession = new Session();
         User currentUser = new User();
@@ -58,10 +66,39 @@ public class CustomApplication extends Application {
         children.add(child2);
         children.add(child3);
 
+        Physician p1 = new Physician("PhyFName1", "PhyLname1", "Pediatrics");
+        Physician p2 = new Physician("PhyFName1", "PhyLname1", "Dermatology");
+
         currentUser.setPerson(p);
         currentUser.setChildren(children);
         this.mCurrentSession.setCurrentUser(currentUser);
         this.mCurrentSession.setLoggedIn(new Date());
+
+        List<Appointment> upcomingAppointments = new ArrayList<Appointment>();
+
+        Appointment appt1 = new Appointment();
+        appt1.setPerson(child1);
+        appt1.setAppointmentDate(new DateTime().plusDays(2).toDate());
+        appt1.setPhysician(p1);
+        appt1.setReasonForVisit("Baz");
+
+        Appointment appt2 = new Appointment();
+        appt2.setPerson(child2);
+        appt2.setAppointmentDate(new DateTime().plusDays(1).toDate());
+        appt2.setPhysician(p2);
+        appt2.setReasonForVisit("Foo");
+
+        Appointment appt3 = new Appointment();
+        appt3.setPerson(child1);
+        appt3.setAppointmentDate(new DateTime().plusMinutes(10).toDate());
+        appt3.setPhysician(p1);
+        appt3.setReasonForVisit("Bar");
+
+        upcomingAppointments.add(appt1);
+        upcomingAppointments.add(appt2);
+        upcomingAppointments.add(appt3);
+
+        currentUser.setUpcomingAppointments(upcomingAppointments);
     }
 
     public Session getCurrentSession() {
@@ -70,5 +107,9 @@ public class CustomApplication extends Application {
 
     public void setCurrentSession(Session session) {
         mCurrentSession = session;
+    }
+
+    public static Context getContext() {
+        return sContext;
     }
 }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:background="@color/secondary_background"
+    android:background="@drawable/rounded_border_white"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -16,8 +16,8 @@
             android:id="@+id/appointmentCellTimeLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NOW"
-            android:textColor="@color/secondary_text_title"
+            android:text="TOMORROW"
+            android:textColor="@color/primary_text_color_dark"
             android:textStyle="bold"
             android:textSize="20dp"
             />
@@ -29,7 +29,7 @@
             android:layout_marginLeft="10dp"
             android:layout_alignBaseline="@id/appointmentCellTimeLbl"
             android:text="(5 minutes to start) - 10:45 AM"
-            android:textColor="@color/secondary_text_title"
+            android:textColor="@color/primary_text_color"
             android:textSize="12dp"
             />
         <TextView
@@ -38,15 +38,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="Dr. Justin Harrison - Dermatology"
-            android:textColor="@color/secondary_text_subtitle"
+            android:textColor="@color/primary_text_color"
             />
 
         <ImageView
             android:id="@+id/appointmentCellPatientImg"
             android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@id/appointmentCellPhysicianInfoLbl"
+            android:layout_alignBottom="@id/appointmentCellPhysicianInfoLbl"
             android:layout_toRightOf="@id/appointmentCellPhysicianInfoLbl"
             android:baselineAlignBottom="@id/appointmentCellPhysicianInfoLbl"
             android:src="@drawable/avatar_yellow"
@@ -60,9 +61,11 @@
             android:layout_toRightOf="@id/appointmentCellPatientImg"
             android:layout_marginLeft="10dp"
             android:text="Melanie"
+            android:textColor="@color/primary_text_color"
             />
     </RelativeLayout>
     <Button
+        android:id="@+id/appointmentCellStartCallBtn"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
@@ -72,7 +75,8 @@
         android:textColor="@color/white"
         />
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/appointmentCellCancelAppointmentButton"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginLeft="10dp"
@@ -80,5 +84,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/appointment_cancelled"
+        android:background="@drawable/transparent_image_button"
+        android:scaleType="centerInside"
         />
 </LinearLayout>

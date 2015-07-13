@@ -5,8 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.tejaswi_yerukalapudi.hellomocks.R;
+import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
 
 import java.util.List;
@@ -22,34 +27,61 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
 
     @Override
     public View getView(int pos, View convertView, ViewGroup parent) {
-        View v = convertView;
+        View view = convertView;
 
-        if (v == null) {
-            LayoutInflater vi;
-            vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.itemlistrow, null);
+        if (view == null) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            view = inflater.inflate(R.layout.view_appointment_row, null);
         }
 
-        Item p = getItem(position);
+        final Appointment appointment = getItem(pos);
 
-        if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.id);
-            TextView tt2 = (TextView) v.findViewById(R.id.categoryId);
-            TextView tt3 = (TextView) v.findViewById(R.id.description);
+        TextView apptTimeTxt = (TextView) view.findViewById(R.id.appointmentCellTimeLbl);
+        TextView apptTimeDescTxt = (TextView) view.findViewById(R.id.appointmentCellTimeDescriptionLbl);
+        TextView physicianInfoTxt = (TextView) view.findViewById(R.id.appointmentCellPhysicianInfoLbl);
+        TextView childNameTxt = (TextView) view.findViewById(R.id.appointmentCellPersonNameLbl);
+        ImageView profilePicImg = (ImageView) view.findViewById(R.id.appointmentCellPatientImg);
+        Button startCallBtn = (Button) view.findViewById(R.id.appointmentCellStartCallBtn);
+        ImageButton cancelApptBtn = (ImageButton) view.findViewById(R.id.appointmentCellCancelAppointmentButton);
 
-            if (tt1 != null) {
-                tt1.setText(p.getId());
-            }
-
-            if (tt2 != null) {
-                tt2.setText(p.getCategory().getId());
-            }
-
-            if (tt3 != null) {
-                tt3.setText(p.getDescription());
-            }
+        apptTimeTxt.setText(appointment.getSimpleAppointmentTime());
+        apptTimeDescTxt.setText(appointment.getAppointmentTimeDescription());
+        physicianInfoTxt.setText(appointment.getPhysicianInfo());
+        if (appointment.getPerson() != null) {
+            childNameTxt.setText(appointment.getPerson().getFirstName());
+        }
+        if (appointment.getPerson() != null && appointment.getPerson().getPicture() != 0) {
+            profilePicImg.setImageResource(appointment.getPerson().getPicture());
         }
 
-        return v;
+        if (Helper.isNow(appointment.getAppointmentDate())) {
+            startCallBtn.setVisibility(View.VISIBLE);
+            startCallBtn.setEnabled(true);
+            startCallBtn.setTag(pos);
+            startCallBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int tag = (int) v.getTag();
+                    // Handle start call
+                    Helper.showToast(getContext(), "Call button clicked for appt: " + appointment.getSimpleAppointmentTime() + " " + appointment.getAppointmentTimeDescription());
+                }
+            });
+        }
+        else {
+            startCallBtn.setVisibility(View.GONE);
+            startCallBtn.setEnabled(false);
+        }
+
+        cancelApptBtn.setTag(pos);
+        cancelApptBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle appointment cancel
+                Helper.showToast(getContext(), "Cancel appointment clicked for appt: " + appointment.getSimpleAppointmentTime() + " " + appointment.getAppointmentTimeDescription());
+            }
+        });
+
+        return view;
     }
+
 }
