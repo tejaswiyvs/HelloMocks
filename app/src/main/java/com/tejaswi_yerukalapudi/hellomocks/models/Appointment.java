@@ -10,6 +10,7 @@ import java.util.Date;
 /**
  * Created by teja on 7/9/15.
  */
+
 public class Appointment implements Parcelable, Comparable<Appointment> {
     private static String NULL_STRING = "N/A";
 
@@ -18,6 +19,7 @@ public class Appointment implements Parcelable, Comparable<Appointment> {
     private String reasonForVisit;
     private Physician physician;
     private Person person;
+    private AppointmentStatus appointmentStatus;
 
     public Appointment() {
 
@@ -71,16 +73,6 @@ public class Appointment implements Parcelable, Comparable<Appointment> {
         this.person = person;
     }
 
-    public String getSimpleAppointmentTime() {
-        if (this.appointmentDate == null) { return NULL_STRING; }
-        return Helper.getSimpleDate(this.appointmentDate);
-    }
-
-    public String getAppointmentTimeDescription() {
-        if (this.appointmentDate == null) { return NULL_STRING; }
-        return Helper.getSimpleDateDescription(appointmentDate);
-    }
-
     public String getPhysicianInfo() {
         if (this.physician == null) {
             return NULL_STRING;
@@ -121,4 +113,12 @@ public class Appointment implements Parcelable, Comparable<Appointment> {
             return new Appointment[size];
         }
     };
+
+    public AppointmentStatus getAppointmentStatus() {
+        return appointmentStatus;
+    }
+
+    public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
+        this.appointmentStatus = appointmentStatus;
+    }
 }

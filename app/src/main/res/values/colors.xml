@@ -2,8 +2,10 @@
 <resources>
     <item name="primary_accent" type="color">#FC9227</item>
     <item name="primary_background" type="color">#EEEEEE</item>
+    <item name="primary_background_2" type="color">#F5F5F5</item>
     <item name="primary_drop_shadow" type="color">#D9D9D9</item>
     <item name="primary_border" type="color">#EDEDED</item>
+    <item name="primary_text_color_light" type="color">#BBBAC8</item>
     <item name="primary_text_color" type="color">#847872</item>
     <item name="primary_text_color_dark" type="color">#39392F</item>
     <item name="stroke" type="color">#EEEEEE</item>
@@ -14,4 +16,5 @@
     <item name="secondary_text_subtitle" type="color">#00A866</item>
     <item name="tertiary_accent" type="color">#3D8DBC</item>
     <item name="white" type="color">#FFFFFF</item>
+    <item name="transparent" type="color">#00000000</item>
 </resources>

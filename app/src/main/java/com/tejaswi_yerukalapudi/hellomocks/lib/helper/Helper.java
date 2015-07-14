@@ -63,68 +63,29 @@ public class Helper {
         return result.toString();
     }
 
-    public static String getSimpleDate(Date date) {
-        if (date == null) { return ""; }
-
-        if (Helper.isNow(date)) {
-            return ctx.getString(R.string.now);
-        }
-        else if (Helper.isToday(date)) {
-            return ctx.getString(R.string.today);
-        }
-        else if (Helper.isYesterday(date)) {
-            return ctx.getString(R.string.yesterday);
-        }
-        else {
-            DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMM");
-            DateTime dt = new DateTime(date);
-            return formatter.print(dt);
-        }
-    }
-
-    public static String getSimpleDateDescription(Date date) {
-        if (date == null) { return ""; }
-        DateTime jodaDate = new DateTime(date);
-        DateTimeFormatter formatter;
-        if (Helper.isNow(date)) {
-            DateTime now = new DateTime();
-            Minutes minsBetween = Minutes.minutesBetween(new DateTime(), jodaDate);
-            formatter = DateTimeFormat.forPattern(TIME_FORMAT);
-            if (now.isAfter(jodaDate)) {
-                return minsBetween.getMinutes() + " " + ctx.getString(R.string.minsLater) + " " + formatter.print(jodaDate);
-            }
-            else {
-                return minsBetween.getMinutes() + " " + ctx.getString(R.string.minsAgo) + " " + formatter.print(jodaDate);
-            }
-        }
-        else if (Helper.isToday(date) || Helper.isYesterday(date)) {
-            formatter = DateTimeFormat.forPattern("dd MMM - " + TIME_FORMAT);
-            return formatter.print(jodaDate);
-        }
-        else {
-            formatter = DateTimeFormat.forPattern("E - " + TIME_FORMAT);
-            return formatter.print(jodaDate);
-        }
-    }
-
-    // A certain threshold of time defined as "Now".
-    // Currently defined as fifteen minutes before or 5 mins after the date.
     public static boolean isNow(Date date) {
         DateTime jodaDate = new DateTime(date);
         DateTime start = jodaDate.minusMinutes(15);
-        DateTime end = jodaDate.plusMinutes(5);
-        Interval today = new Interval(start, end);
-        return today.contains(new DateTime());
+        DateTime end = jodaDate.plusMinutes(10);
+        Interval interval = new Interval(start, end);
+        return interval.contains(new DateTime());
     }
 
-    private static boolean isToday(Date date) {
-        Interval today = new Interval(DateTime.now().withTimeAtStartOfDay(), Days.ONE);
-        return today.contains(new DateTime(date));
+    public static String getMonth(Date date) {
+        if (date == null) return "";
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM");
+        return formatter.print(new DateTime(date));
     }
 
-    private static boolean isYesterday(Date date) {
-        DateTime yesterday = DateTime.now().minusDays(1);
-        Interval yesterdayInterval = new Interval(yesterday.withTimeAtStartOfDay(), Days.ONE);
-        return yesterdayInterval.contains(new DateTime(date));
+    public static String getDate(Date date) {
+        if (date == null) return "";
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd");
+        return formatter.print(new DateTime(date));
+    }
+
+    public static String getTime(Date date) {
+        if (date == null) return "";
+        DateTimeFormatter formatter = DateTimeFormat.forPattern(TIME_FORMAT);
+        return formatter.print(new DateTime(date));
     }
 }

@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
 import com.tejaswi_yerukalapudi.hellomocks.models.Appointment;
+import com.tejaswi_yerukalapudi.hellomocks.models.AppointmentStatus;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ import java.util.List;
 public class NotesAdapter extends ArrayAdapter<Appointment> {
 
     public NotesAdapter(Context ctx, List<Appointment> appointmentList) {
-        super(ctx, R.layout.view_appointment_row, appointmentList);
+        super(ctx, R.layout.view_note_row, appointmentList);
     }
 
     @Override
@@ -31,55 +34,32 @@ public class NotesAdapter extends ArrayAdapter<Appointment> {
 
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            view = inflater.inflate(R.layout.view_appointment_row, parent, false);
+            view = inflater.inflate(R.layout.view_note_row, parent, false);
         }
 
         final Appointment appointment = getItem(pos);
 
-        TextView apptTimeTxt = (TextView) view.findViewById(R.id.appointmentCellTimeLbl);
-        TextView apptTimeDescTxt = (TextView) view.findViewById(R.id.appointmentCellTimeDescriptionLbl);
-        TextView physicianInfoTxt = (TextView) view.findViewById(R.id.appointmentCellPhysicianInfoLbl);
-        TextView childNameTxt = (TextView) view.findViewById(R.id.appointmentCellPersonNameLbl);
-        ImageView profilePicImg = (ImageView) view.findViewById(R.id.appointmentCellPatientImg);
-        Button startCallBtn = (Button) view.findViewById(R.id.appointmentCellStartCallBtn);
-        ImageButton cancelApptBtn = (ImageButton) view.findViewById(R.id.appointmentCellCancelAppointmentButton);
+        ImageView appointmentStatusImg = (ImageView) view.findViewById(R.id.noteCellAppointmentStatusImg);
+        TextView patientNameTxt = (TextView) view.findViewById(R.id.noteCellPatientNameTxt);
+        TextView appointmentTimeTxt = (TextView) view.findViewById(R.id.noteCellAppointmentTimeTxt);
+        TextView physicianNameTxt = (TextView) view.findViewById(R.id.notesCellPhysicianNameTxt);
+        Button consultSummaryBtn = (Button) view.findViewById(R.id.noteCellConsultSummaryBtn);
 
-        apptTimeTxt.setText(appointment.getSimpleAppointmentTime());
-        apptTimeDescTxt.setText(appointment.getAppointmentTimeDescription());
-        physicianInfoTxt.setText(appointment.getPhysicianInfo());
+        // We should never have an appointment with status scheduled in the completed appointment list.
+        AppointmentStatus status = appointment.getAppointmentStatus();
+        if (status == AppointmentStatus.UNKNOWN || status == AppointmentStatus.SCHEDULED) {
+            appointmentStatusImg.setImageResource(R.drawable.appointment_scheduled);
+        }
+        else if (status == AppointmentStatus.CANCELLED) {
+            appointmentStatusImg.setImageResource(R.drawable.appointment_cancelled);
+        }
+        else if (status == AppointmentStatus.COMPLETED) {
+            appointmentStatusImg.setImageResource(R.drawable.appointment_completed);
+        }
+
         if (appointment.getPerson() != null) {
-            childNameTxt.setText(appointment.getPerson().getFirstName());
+            patientNameTxt.setText(appointment.getPerson().getFullName());
         }
-        if (appointment.getPerson() != null && appointment.getPerson().getPicture() != 0) {
-            profilePicImg.setImageResource(appointment.getPerson().getPicture());
-        }
-
-        if (Helper.isNow(appointment.getAppointmentDate())) {
-            startCallBtn.setVisibility(View.VISIBLE);
-            startCallBtn.setEnabled(true);
-            startCallBtn.setTag(pos);
-            startCallBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int tag = (int) v.getTag();
-                    // Handle start call
-                    Helper.showToast(getContext(), "Call button clicked for appt: " + appointment.getSimpleAppointmentTime() + " " + appointment.getAppointmentTimeDescription());
-                }
-            });
-        }
-        else {
-            startCallBtn.setVisibility(View.GONE);
-            startCallBtn.setEnabled(false);
-        }
-
-        cancelApptBtn.setTag(pos);
-        cancelApptBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle appointment cancel
-                Helper.showToast(getContext(), "Cancel appointment clicked for appt: " + appointment.getSimpleAppointmentTime() + " " + appointment.getAppointmentTimeDescription());
-            }
-        });
 
         return view;
     }

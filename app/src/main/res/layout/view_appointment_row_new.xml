@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/appointmentCellApptDateTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/appointmentCellApptMonthTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jul"
+            android:textSize="12dp"
+            android:textStyle="normal"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_border_gray"
+        >
+
+        <TextView
+            android:id="@+id/appointmentCellPhysicianInfoTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dr. Amarfis Anahi Garcia Saint Hilarie, D.D.S"
+            android:textColor="@color/primary_text_color_dark"
+            />
+
+        <TextView
+            android:id="@+id/appointmentCellApptTimeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="10:30 AM"
+            android:textColor="@color/primary_text_color_light"
+            />
+
+        <Button
+            android:id="@+id/appointmentCellStartCallBtn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Start Call"
+            android:textColor="@color/white"
+            android:background="@drawable/secondary_button"
+
+            />
+
+        <TextView
+            android:id="@+id/appointmentCellAppointmentTypeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appointmentCellPhysicianInfoTxt"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:text="Physical Medicine and Rehabilitation"
+            android:textColor="@color/primary_text_color"
+            />
+
+        <TextView
+            android:id="@+id/appointmentCellPersonNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appointmentCellAppointmentTypeTxt"
+            android:textColor="@color/primary_text_color"
+            android:text="Montgomery"
+            />
+
+        <Button
+            android:id="@+id/appointmentCellCancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_below="@id/appointmentCellPersonNameTxt"
+            android:layout_alignParentRight="true"
+            android:text="Cancel"
+            android:textColor="@color/primary_text_color_light"
+            android:textSize="12dp"
+            android:background="@null"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
