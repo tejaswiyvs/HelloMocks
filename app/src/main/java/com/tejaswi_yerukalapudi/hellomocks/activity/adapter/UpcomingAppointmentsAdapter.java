@@ -68,8 +68,8 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
             });
         }
         else {
-            startCallBtn.setVisibility(View.GONE);
-            startCallBtn.setEnabled(false);
+//            startCallBtn.setVisibility(View.GONE);
+//            startCallBtn.setEnabled(false);
         }
 
         cancelApptBtn.setTag(pos);
