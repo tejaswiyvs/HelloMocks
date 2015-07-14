@@ -32,6 +32,7 @@ import javax.xml.datatype.Duration;
  * Created by teja on 7/9/15.
  */
 public class Helper {
+    private static final String TIME_FORMAT = "hh:mm a";
     private static Context ctx = CustomApplication.getContext();
 
     public static void showToast(Context ctx, String message) {
@@ -88,7 +89,7 @@ public class Helper {
         if (Helper.isNow(date)) {
             DateTime now = new DateTime();
             Minutes minsBetween = Minutes.minutesBetween(new DateTime(), jodaDate);
-            formatter = DateTimeFormat.forPattern("KK:mm a");
+            formatter = DateTimeFormat.forPattern(TIME_FORMAT);
             if (now.isAfter(jodaDate)) {
                 return minsBetween.getMinutes() + " " + ctx.getString(R.string.minsLater) + " " + formatter.print(jodaDate);
             }
@@ -97,11 +98,11 @@ public class Helper {
             }
         }
         else if (Helper.isToday(date) || Helper.isYesterday(date)) {
-            formatter = DateTimeFormat.forPattern("dd MMM - KK:mm a");
+            formatter = DateTimeFormat.forPattern("dd MMM - " + TIME_FORMAT);
             return formatter.print(jodaDate);
         }
         else {
-            formatter = DateTimeFormat.forPattern("E - KK:mm a");
+            formatter = DateTimeFormat.forPattern("E - " + TIME_FORMAT);
             return formatter.print(jodaDate);
         }
     }

@@ -61,6 +61,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="@dimen/activity_default_margin"
         android:layout_marginBottom="@dimen/activity_default_margin"
+        android:clipChildren="true"
         android:divider="@drawable/list_divider"
         android:dividerHeight="1dp"
         android:background="@drawable/rounded_border_white"

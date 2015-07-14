@@ -88,7 +88,7 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
                 }
             });
 
-            view.setBackgroundColor(this.mCtx.getResources().getColor(R.color.secondary_background));
+            view.setBackgroundResource(R.drawable.rounded_secondary_background);
             apptTimeTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_title));
             apptTimeDescTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_subtitle));
             physicianInfoTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_subtitle));
