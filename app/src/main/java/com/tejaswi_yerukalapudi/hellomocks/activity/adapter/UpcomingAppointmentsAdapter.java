@@ -21,8 +21,11 @@ import java.util.List;
  */
 public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
 
+    private Context mCtx;
+
     public UpcomingAppointmentsAdapter(Context ctx, List<Appointment> appointmentList) {
         super(ctx, R.layout.view_appointment_row, appointmentList);
+        this.mCtx = ctx;
     }
 
     @Override
@@ -84,10 +87,16 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
                     Helper.showToast(getContext(), "Call button clicked for appt: " + appointment.getSimpleAppointmentTime() + " " + appointment.getAppointmentTimeDescription());
                 }
             });
+
+            view.setBackgroundColor(this.mCtx.getResources().getColor(R.color.secondary_background));
+            apptTimeTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_title));
+            apptTimeDescTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_subtitle));
+            physicianInfoTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_subtitle));
+            childNameTxt.setTextColor(this.mCtx.getResources().getColor(R.color.secondary_text_subtitle));
         }
         else {
-//            startCallBtn.setVisibility(View.GONE);
-//            startCallBtn.setEnabled(false);
+            startCallBtn.setVisibility(View.GONE);
+            startCallBtn.setEnabled(false);
         }
 
         cancelApptBtn.setTag(pos);

@@ -97,7 +97,7 @@ public class Helper {
             }
         }
         else if (Helper.isToday(date) || Helper.isYesterday(date)) {
-            formatter = DateTimeFormat.forPattern("DD MMM - KK:mm a");
+            formatter = DateTimeFormat.forPattern("dd MMM - KK:mm a");
             return formatter.print(jodaDate);
         }
         else {
@@ -109,10 +109,11 @@ public class Helper {
     // A certain threshold of time defined as "Now".
     // Currently defined as fifteen minutes before or 5 mins after the date.
     public static boolean isNow(Date date) {
-        DateTime hourAgo = new DateTime().minusMinutes(15);
-        DateTime hourAfter = new DateTime().plusMinutes(5);
-        Interval today = new Interval(hourAgo, hourAfter);
-        return today.contains(new DateTime(date));
+        DateTime jodaDate = new DateTime(date);
+        DateTime start = jodaDate.minusMinutes(15);
+        DateTime end = jodaDate.plusMinutes(5);
+        Interval today = new Interval(start, end);
+        return today.contains(new DateTime());
     }
 
     private static boolean isToday(Date date) {

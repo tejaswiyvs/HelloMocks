@@ -89,7 +89,7 @@
         android:id="@+id/appointmentCellStartCallBtn"
         android:layout_weight="3"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="5dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/secondary_button"
