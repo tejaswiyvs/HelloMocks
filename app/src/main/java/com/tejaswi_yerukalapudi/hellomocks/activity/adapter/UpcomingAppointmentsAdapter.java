@@ -38,8 +38,8 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
 
         TextView apptTimeTxt = (TextView) view.findViewById(R.id.appointmentCellTimeLbl);
         TextView apptTimeDescTxt = (TextView) view.findViewById(R.id.appointmentCellTimeDescriptionLbl);
-        TextView physicianInfoTxt = (TextView) view.findViewById(R.id.appointmentCellPhysicianInfoLbl);
-        TextView childNameTxt = (TextView) view.findViewById(R.id.appointmentCellPersonNameLbl);
+        final TextView physicianInfoTxt = (TextView) view.findViewById(R.id.appointmentCellPhysicianInfoLbl);
+        final TextView childNameTxt = (TextView) view.findViewById(R.id.appointmentCellPersonNameLbl);
         ImageView profilePicImg = (ImageView) view.findViewById(R.id.appointmentCellPatientImg);
         Button startCallBtn = (Button) view.findViewById(R.id.appointmentCellStartCallBtn);
         ImageButton cancelApptBtn = (ImageButton) view.findViewById(R.id.appointmentCellCancelAppointmentButton);
@@ -47,8 +47,26 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
         apptTimeTxt.setText(appointment.getSimpleAppointmentTime());
         apptTimeDescTxt.setText(appointment.getAppointmentTimeDescription());
         physicianInfoTxt.setText(appointment.getPhysicianInfo());
+
+        // Ellipsize on click if needed
+        physicianInfoTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                physicianInfoTxt.setSelected(true);
+                physicianInfoTxt.requestFocus();
+            }
+        });
+
         if (appointment.getPerson() != null) {
             childNameTxt.setText(appointment.getPerson().getFirstName());
+            // Ellipsize on click if needed.
+            childNameTxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    childNameTxt.setSelected(true);
+                    childNameTxt.requestFocus();
+                }
+            });
         }
         if (appointment.getPerson() != null && appointment.getPerson().getPicture() != 0) {
             profilePicImg.setImageResource(appointment.getPerson().getPicture());
