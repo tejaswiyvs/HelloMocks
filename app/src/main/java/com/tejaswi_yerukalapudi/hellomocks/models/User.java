@@ -9,6 +9,7 @@ public class User {
     private Person person;
     private List<Person> children;
     private List<Appointment> upcomingAppointments;
+    private List<Appointment> completedAppointments;
 
     public Person getPerson() {
         return person;
@@ -32,5 +33,13 @@ public class User {
 
     public void setUpcomingAppointments(List<Appointment> upcomingAppointments) {
         this.upcomingAppointments = upcomingAppointments;
+    }
+
+    public List<Appointment> getCompletedAppointments() {
+        return completedAppointments;
+    }
+
+    public void setCompletedAppointments(List<Appointment> completedAppointments) {
+        this.completedAppointments = completedAppointments;
     }
 }

@@ -52,6 +52,7 @@ public class UpcomingAppointmentsAdapter extends ArrayAdapter<Appointment> {
         apptMonthTxt.setText(Helper.getMonth(appointment.getAppointmentDate()));
         apptDateTxt.setText(Helper.getDate(appointment.getAppointmentDate()));
         apptTimeTxt.setText(Helper.getTime(appointment.getAppointmentDate()));
+        appointmentTypeTxt.setText(appointment.getAppointmentType());
         physicianInfoTxt.setText(appointment.getPhysicianInfo());
 
         if (appointment.getPerson() != null) {

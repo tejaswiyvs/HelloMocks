@@ -85,24 +85,55 @@ public class CustomApplication extends Application {
         appt1.setAppointmentDate(new DateTime().plusDays(2).toDate());
         appt1.setPhysician(p1);
         appt1.setReasonForVisit("Baz");
+        appt1.setAppointmentType("Physical Medicine and Rehabilitation");
 
         Appointment appt2 = new Appointment();
         appt2.setPerson(child2);
         appt2.setAppointmentDate(new DateTime().plusDays(1).toDate());
         appt2.setPhysician(p2);
         appt2.setReasonForVisit("Foo");
+        appt2.setAppointmentType("Physical Medicine and Rehabilitation");
 
         Appointment appt3 = new Appointment();
         appt3.setPerson(child1);
         appt3.setAppointmentDate(new DateTime().plusMinutes(10).toDate());
         appt3.setPhysician(p1);
         appt3.setReasonForVisit("Bar");
+        appt3.setAppointmentType("Physical Medicine and Rehabilitation");
 
         upcomingAppointments.add(appt1);
         upcomingAppointments.add(appt2);
         upcomingAppointments.add(appt3);
 
         currentUser.setUpcomingAppointments(upcomingAppointments);
+
+        List<Appointment> completedAppointments = new ArrayList<Appointment>();
+        Appointment appt4 = new Appointment();
+        appt4.setPerson(child1);
+        appt4.setAppointmentDate(new DateTime().minusDays(5).toDate());
+        appt4.setPhysician(p1);
+        appt4.setReasonForVisit("Baz");
+        appt4.setAppointmentType("Physical Medicine and Rehabilitation");
+
+        Appointment appt5 = new Appointment();
+        appt5.setPerson(child2);
+        appt5.setAppointmentDate(new DateTime().minusDays(3).toDate());
+        appt5.setPhysician(p2);
+        appt5.setReasonForVisit("Foo");
+        appt5.setAppointmentType("Physical Medicine and Rehabilitation");
+
+        Appointment appt6 = new Appointment();
+        appt6.setPerson(child1);
+        appt6.setAppointmentDate(new DateTime().minusDays(1).toDate());
+        appt6.setPhysician(p1);
+        appt6.setReasonForVisit("Bar");
+        appt6.setAppointmentType("Physical Medicine and Rehabilitation");
+
+        completedAppointments.add(appt1);
+        completedAppointments.add(appt2);
+        completedAppointments.add(appt3);
+
+        currentUser.setCompletedAppointments(completedAppointments);
     }
 
     public Session getCurrentSession() {

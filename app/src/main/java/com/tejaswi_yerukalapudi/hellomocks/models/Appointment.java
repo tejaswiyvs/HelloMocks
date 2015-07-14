@@ -20,6 +20,7 @@ public class Appointment implements Parcelable, Comparable<Appointment> {
     private Physician physician;
     private Person person;
     private AppointmentStatus appointmentStatus;
+    private String appointmentType;
 
     public Appointment() {
 
@@ -120,5 +121,13 @@ public class Appointment implements Parcelable, Comparable<Appointment> {
 
     public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
         this.appointmentStatus = appointmentStatus;
+    }
+
+    public String getAppointmentType() {
+        return appointmentType;
+    }
+
+    public void setAppointmentType(String appointmentType) {
+        this.appointmentType = appointmentType;
     }
 }

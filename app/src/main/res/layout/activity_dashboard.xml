@@ -58,7 +58,7 @@
     <ListView
         android:id="@+id/dashboardAppointmentList"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_marginTop="@dimen/activity_default_margin"
         android:layout_marginBottom="@dimen/activity_default_margin"
         android:clipChildren="true"

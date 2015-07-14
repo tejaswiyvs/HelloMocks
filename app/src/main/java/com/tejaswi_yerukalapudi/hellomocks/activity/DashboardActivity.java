@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.tejaswi_yerukalapudi.hellomocks.R;
 import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.ChildPickerAdapter;
+import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.NotesAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.SpecialtyAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.activity.adapter.UpcomingAppointmentsAdapter;
 import com.tejaswi_yerukalapudi.hellomocks.lib.helper.Helper;
@@ -37,6 +38,7 @@ public class DashboardActivity extends BaseActivity {
     private ArrayAdapter<Person> mChildPickerAdapter;
     private ArrayAdapter<CharSequence> mSpecialtyPickerAdapter;
     private ArrayAdapter<Appointment> mUpcomingAppointmentsAdapter;
+    private ArrayAdapter<Appointment> mNotesAdapter;
 
     private User mCurrentUser;
 
@@ -72,7 +74,7 @@ public class DashboardActivity extends BaseActivity {
         this.setupChildPickerSpinner();
         this.setupSpecialtySpinner();
         this.setupUpcomingAppointmentsList();
-        this.mNotesListView = (ListView) findViewById(R.id.dashboardNotesList);
+        this.setupCompletedAppointmentsList();
         this.mSearchBtn = (Button) findViewById(R.id.dashboardSearchBtn);
     }
 
@@ -100,6 +102,15 @@ public class DashboardActivity extends BaseActivity {
             Collections.sort(this.mCurrentUser.getUpcomingAppointments());
             this.mUpcomingAppointmentsAdapter = new UpcomingAppointmentsAdapter(this, this.mCurrentUser.getUpcomingAppointments());
             this.mUpcomingAppointmentsListView.setAdapter(this.mUpcomingAppointmentsAdapter);
+        }
+    }
+
+    private void setupCompletedAppointmentsList() {
+        this.mNotesListView = (ListView) findViewById(R.id.dashboardNotesList);
+        if (this.mCurrentUser.getCompletedAppointments() != null) {
+            Collections.sort(this.mCurrentUser.getCompletedAppointments());
+            this.mNotesAdapter = new NotesAdapter(this, this.mCurrentUser.getCompletedAppointments());
+            this.mNotesListView.setAdapter(this.mNotesAdapter);
         }
     }
 }
